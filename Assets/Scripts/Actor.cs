@@ -6,20 +6,20 @@ public class Actor : MonoBehaviour
     [SerializeField] private int Health = 10;
     [SerializeField] private int MaxHealth = 10;
 
-    protected virtual void ReciveDamage(int damage) 
+    protected virtual void ReciveDamage(int damage)
     {
         print("Damage to: " + gameObject.name + "\nAmount: " + damage);
 
         Health -= damage;
 
-        if (Health < 1) 
+        if (Health < 1)
         {
             Death();
             return;
         }
     }
 
-    protected virtual void ReciveHealth(int health) 
+    protected virtual void ReciveHealth(int health)
     {
         print("Health to: " + gameObject.name + "\nAmount: " + health);
 
@@ -29,7 +29,7 @@ public class Actor : MonoBehaviour
         Health += health;
     }
 
-    protected virtual void Death() 
+    protected virtual void Death()
     {
         print("Died: " + gameObject.name);
         Destroy(gameObject);

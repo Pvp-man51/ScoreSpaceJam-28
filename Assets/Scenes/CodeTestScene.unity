@@ -427,9 +427,9 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.03723404
+    x: 0
     y: 0
-    width: 0.9251379
+    width: 1
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
@@ -601,6 +601,7 @@ MonoBehaviour:
   SpawnAreaSize: {x: 27.07, y: 20.7}
   Enemy: {fileID: 7681045617730725387, guid: 32e034aeb28a811408796de0ec5927fa, type: 3}
   TimeBetweenWaves: 5
+  TimeTillMutationOccurs: 5
 --- !u!4 &668250123
 Transform:
   m_ObjectHideFlags: 0
@@ -610,7 +611,7 @@ Transform:
   m_GameObject: {fileID: 668250121}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.09, y: 1.01, z: 2.111773}
+  m_LocalPosition: {x: -0.09, y: 1.01, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

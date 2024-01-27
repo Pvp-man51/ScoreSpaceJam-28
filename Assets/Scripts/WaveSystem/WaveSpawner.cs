@@ -10,6 +10,10 @@ public class WaveSpawner : MonoBehaviour
     [SerializeField] private GameObject Enemy;
     [Space(5)]
     [SerializeField] private float TimeBetweenWaves = 5.0f;
+    [Space(5)]
+    [SerializeField] private float TimeTillMutationOccurs = 60f;
+
+    private float mutationTimer;
 
     private float timeBetweenWavesTimer;
 
@@ -17,7 +21,7 @@ public class WaveSpawner : MonoBehaviour
     private float searchTimer;
 
     private int waveCount;
-    private int enemyCount = 1;
+    private int enemyCount = 3;
     private float spawnRate = 1.0f;
 
     private SpawnState spawnState = SpawnState.CONTINUING;
@@ -25,20 +29,32 @@ public class WaveSpawner : MonoBehaviour
     private void Start()
     {
         timeBetweenWavesTimer = TimeBetweenWaves;
+        mutationTimer = TimeTillMutationOccurs;
     }
 
     private void Update()
     {   
         if (spawnState == SpawnState.WAITING)
         {
-            if (!EnemyAlive())
-            {
+            //if (!EnemyAlive())
+            //{
                 // Move to next wave
                 WaveCompleted();
-            }
-            else
+            //}
+            //else
+            //{
+                
+            //}
+        }
+
+        if (EnemyAlive()) 
+        {
+            mutationTimer -= Time.deltaTime;
+
+            if (mutationTimer < 0)
             {
-                return;
+                GameManager.Instance.StartMutation();
+                mutationTimer = TimeTillMutationOccurs;
             }
         }
 
@@ -112,9 +128,10 @@ public class WaveSpawner : MonoBehaviour
     {
         print("Wave Completed");
 
-        // Move to the CONTINUING state, reset timer
+        // Move to the CONTINUING state, reset timers
         spawnState = SpawnState.CONTINUING;
         timeBetweenWavesTimer = TimeBetweenWaves;
+        mutationTimer = TimeTillMutationOccurs;
 
         // Update wave parameters
         waveCount++;
