@@ -1283,7 +1283,8 @@ public class AstarPath : VersionedMonoBehaviour {
 		};
 
 		pathProcessor.OnPathPostSearch += path => {
-			LogPathResults(path);
+			// ENABLE LOG!!
+			//LogPathResults(path);
 			var tmp = OnPathPostSearch;
 			if (tmp != null) tmp(path);
 		};

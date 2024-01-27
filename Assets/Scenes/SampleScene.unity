@@ -178,7 +178,39 @@ MonoBehaviour:
     _MeshEdgeColor: {r: 0, g: 0, b: 0, a: 0.5}
     _AreaColors:
     - {r: 0, g: 0, b: 0, a: 0}
-  tagNames: []
+  tagNames:
+  - Basic Ground
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+  - 10
+  - 11
+  - 12
+  - 13
+  - 14
+  - 15
+  - 16
+  - 17
+  - 18
+  - 19
+  - 20
+  - 21
+  - 22
+  - 23
+  - 24
+  - 25
+  - 26
+  - 27
+  - 28
+  - 29
+  - 30
+  - 31
   heuristic: 2
   heuristicScale: 1
   threadCount: 1
@@ -566,7 +598,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65c90a15b2a2e414b84c376da19206c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpawnAreaSize: {x: 10, y: 10}
+  SpawnAreaSize: {x: 27.07, y: 20.7}
+  Enemy: {fileID: 7681045617730725387, guid: 32e034aeb28a811408796de0ec5927fa, type: 3}
+  TimeBetweenWaves: 5
 --- !u!4 &668250123
 Transform:
   m_ObjectHideFlags: 0
@@ -576,7 +610,7 @@ Transform:
   m_GameObject: {fileID: 668250121}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.76, y: 1.01, z: 2.111773}
+  m_LocalPosition: {x: -0.09, y: 1.01, z: 2.111773}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -678,7 +712,7 @@ GameObject:
   - component: {fileID: 1161267748}
   m_Layer: 0
   m_Name: BulletContainer
-  m_TagString: Untagged
+  m_TagString: BulletContainer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
