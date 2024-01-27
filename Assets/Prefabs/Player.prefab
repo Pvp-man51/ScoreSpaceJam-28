@@ -100,11 +100,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e32d7d5e0906ff46bbbd289fb83b189, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FireRate: 1
-  Spread: 0
-  BulletAmount: 1
-  BulletSpeed: 3
-  Reload: 0
+  TimeBetweenShots: 0.1
+  Spread: 1
+  BulletAmount: 3
+  BulletSpeed: 5
+  canPressDown: 1
   Bullet: {fileID: 2839525033980228011, guid: 38f633cda56aaf94dadb8f7f9d645b01, type: 3}
   ShootPoint: {fileID: 2017952726738534919}
 --- !u!1 &6307774470772087312
@@ -219,7 +219,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.21226418, g: 1, b: 0.7396254, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -376,5 +376,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09ea7dbde439b5c41bce839d4d0bf1aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Health: 10
+  MaxHealth: 10
   MaxRun: 11
   rb: {fileID: 6228597195733626943}

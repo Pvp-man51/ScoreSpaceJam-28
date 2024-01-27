@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class WaveSpawner : MonoBehaviour
@@ -60,13 +59,14 @@ public class WaveSpawner : MonoBehaviour
 
         while (spawnState == SpawnState.SPAWNING)
         {
-            // Calc Pos
-            Vector2 spawnPos = new Vector2(Random.Range(-SpawnAreaSize.x, SpawnAreaSize.x), Random.Range(-SpawnAreaSize.y, SpawnAreaSize.y));
-            
             // Spawn the enemies
             for (int i = 0; i < enemyCount; i++) 
             {
+                // Calc Pos
+                Vector2 spawnPos = new Vector2(Random.Range(-SpawnAreaSize.x, SpawnAreaSize.x), Random.Range(-SpawnAreaSize.y, SpawnAreaSize.y));
+
                 SpawnEnemy(spawnPos);
+
                 yield return new WaitForSeconds(spawnRate);
             }
 

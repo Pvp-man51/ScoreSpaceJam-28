@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : Actor
 {
     public static PlayerController Instance;
 
@@ -60,4 +60,12 @@ public class PlayerController : MonoBehaviour
     }
 
     #endregion
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Enemy")) 
+        {
+            ReciveDamage(collision.GetComponent<Enemy>().GetDamage());
+        }
+    }
 }

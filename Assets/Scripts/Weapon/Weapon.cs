@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class Weapon : MonoBehaviour
 {
@@ -10,6 +7,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] private float Spread = 1.0f;
     [SerializeField] private int BulletAmount = 1;
     [SerializeField] private float BulletSpeed = 3.0f;
+    [SerializeField] private bool canPressDown = false;
 
     private float timeBetweenShotsTimer;
 
@@ -84,5 +82,10 @@ public class Weapon : MonoBehaviour
 
         // Apply Rotation
         transform.rotation = Quaternion.Euler(0, 0, rotZ);
+    }
+
+    public bool GetCanPressDown()
+    {
+        return canPressDown;
     }
 }
