@@ -42,7 +42,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _NoiseValue: 20
-    - _Progress: 0
+    - _Progress: 1
     m_Colors:
     - _TransitionColor: {r: 0.044465754, g: 0.0244749, b: 0.09433961, a: 0}
   m_BuildTextureStacks: []

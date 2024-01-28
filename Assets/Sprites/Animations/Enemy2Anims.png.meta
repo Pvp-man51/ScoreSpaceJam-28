@@ -1,10 +1,22 @@
 fileFormatVersion: 2
-guid: d78254ccf322b874782d51126e0327ca
+guid: d65948fc420b20644b7c2b16df5aa225
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 861090377429543313
-    second: tree stump_0
+      213: 7134213745174036145
+    second: Enemy2Anims_0
+  - first:
+      213: -5265443642081060961
+    second: Enemy2Anims_1
+  - first:
+      213: -1599991440212403335
+    second: Enemy2Anims_2
+  - first:
+      213: 7814252863999217418
+    second: Enemy2Anims_3
+  - first:
+      213: 3546006918055995735
+    second: Enemy2Anims_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +63,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 128
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -84,19 +96,6 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -113,13 +112,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: tree stump_0
+      name: Enemy2Anims_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 25
-        height: 23
+        x: 4
+        y: 69
+        width: 10
+        height: 22
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -127,8 +126,92 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 199e132d22533fb00800000000000000
-      internalID: 861090377429543313
+      spriteID: 1bebec04a91d10360800000000000000
+      internalID: 7134213745174036145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy2Anims_1
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 69
+        width: 10
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f975be0b7e26de6b0800000000000000
+      internalID: -5265443642081060961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy2Anims_2
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 69
+        width: 10
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97b59722340bbc9e0800000000000000
+      internalID: -1599991440212403335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy2Anims_3
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 46
+        width: 11
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0f80cff39dc17c60800000000000000
+      internalID: 7814252863999217418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy2Anims_4
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 46
+        width: 11
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7592ec12182f53130800000000000000
+      internalID: 3546006918055995735
       vertices: []
       indices: 
       edges: []
@@ -136,7 +219,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: f321ed2126ae6a34b9447d54928010d5
     internalID: 0
     vertices: []
     indices: 
@@ -144,7 +227,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      tree stump_0: 861090377429543313
+      Enemy2Anims_0: 7134213745174036145
+      Enemy2Anims_1: -5265443642081060961
+      Enemy2Anims_2: -1599991440212403335
+      Enemy2Anims_3: 7814252863999217418
+      Enemy2Anims_4: 3546006918055995735
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
