@@ -61,6 +61,26 @@ public class PlayerController : Actor
 
     #endregion
 
+    protected override void Death()
+    {
+        if (GameManager.Instance.State == GameState.Death)
+            return;
+
+        GameManager.Instance.UpdateGameState(GameState.Death);
+    }
+
+    protected override void ReciveDamage(int damage)
+    {
+        print("Player recived damage");
+        Health -= damage;
+
+        if (Health < 1)
+        {
+            Death();
+            return;
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Enemy")) 

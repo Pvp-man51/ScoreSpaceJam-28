@@ -3,8 +3,8 @@ using UnityEngine;
 public class Actor : MonoBehaviour
 {
     [Header("Health")]
-    [SerializeField] private int Health = 10;
-    [SerializeField] private int MaxHealth = 10;
+    [SerializeField] protected int MaxHealth = 10;
+    [SerializeField] protected int Health = 10;
 
     protected virtual void ReciveDamage(int damage)
     {

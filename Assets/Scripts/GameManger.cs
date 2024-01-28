@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 
@@ -9,13 +11,17 @@ public class GameManager : MonoBehaviour
     public delegate void MutateEnemies();
     public static event MutateEnemies onMutateEnemies;
 
+    [Header("Game State")]
+    public GameState State;
+    public static event Action<GameState> OnGameStateChanged;
+
     [Header("Score")]
     [SerializeField] private int Score;
 
     private int bestScore;
 
-    [Header("Camera")]
-    public Camera Cam { get; private set; }
+    [Header("Components")]
+    [SerializeField] private GameUIManager uiManager;
 
     private void Awake()
     {
@@ -27,9 +33,36 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        UpdateGameState(GameState.Normal);
+
         Cursor.lockState = CursorLockMode.Confined;
-        Cam = Camera.main;
+
+        uiManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<GameUIManager>();
     }
+
+    #region GameState
+
+    public void UpdateGameState(GameState newState)
+    {
+        State = newState;
+
+        switch (newState)
+        {
+            case GameState.Normal:
+                break;
+            case GameState.Death:
+                Death();
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
+        }
+
+        OnGameStateChanged?.Invoke(newState);
+
+        print("Current State: " + State.ToString());
+    }
+
+    #endregion
 
     #region Mutation
 
@@ -64,9 +97,25 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
+    private void Death()
+    {
+        MenuManager.Instance.OpenMenu("Death");
+        uiManager.StartTransition();
+    }
+
+    public void LoadScene(string _sceneName)
+    {
+        SceneManager.LoadSceneAsync(_sceneName);
+    }
 
     public void QuitGame()
     {
         Application.Quit();
     }
+}
+
+public enum GameState
+{
+    Normal,
+    Death
 }

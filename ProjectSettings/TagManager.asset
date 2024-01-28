@@ -8,6 +8,7 @@ TagManager:
   - BulletContainer
   - Enemy
   - Obstacle
+  - UIManager
   layers:
   - Default
   - TransparentFX
@@ -44,4 +45,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: BackGround
+    uniqueID: 3658798367
+    locked: 0
+  - name: Player
+    uniqueID: 1922328371
+    locked: 0
+  - name: UI
+    uniqueID: 2014119295
     locked: 0

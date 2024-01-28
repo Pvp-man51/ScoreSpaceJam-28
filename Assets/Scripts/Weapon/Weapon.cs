@@ -17,11 +17,15 @@ public class Weapon : MonoBehaviour
 
     private GameObject bulletCointainer;
 
+    private Camera cam;
+
     private void OnEnable() => PlayerController.onShoot += Shoot;
     private void OnDisable() => PlayerController.onShoot -= Shoot;
 
     protected void Start()
     {
+        cam = Camera.main;
+
         timeBetweenShotsTimer = TimeBetweenShots;
 
         bulletCointainer = GameObject.FindGameObjectWithTag("BulletContainer");
@@ -75,7 +79,7 @@ public class Weapon : MonoBehaviour
     private void LookAtMouse()
     {
         // Get MousePos and Rotation Value
-        Vector2 mousePos = GameManager.Instance.Cam.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
         Vector2 rotation = mousePos - (Vector2)transform.position;
 
         float rotZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;

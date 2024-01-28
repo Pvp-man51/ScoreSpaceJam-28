@@ -19,6 +19,9 @@ public class Timer : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.Instance.State == GameState.Death)
+            return;
+
         rTimer += Time.deltaTime;
     }
 

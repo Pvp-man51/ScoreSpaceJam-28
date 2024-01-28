@@ -6,11 +6,9 @@ public class Enemy : Actor
     [Header("Stats")]
     [SerializeField] private int BaseDamage = 1;
     [SerializeField] private float BaseSpeed = 3f;
-    [SerializeField] private int MutationLevelCap = 3;
 
     private int damage;
     private float speed;
-    private int mutationLevel;
 
     [Header("Components")]
     [SerializeField] private AIDestinationSetter AIDestinationSetter;
