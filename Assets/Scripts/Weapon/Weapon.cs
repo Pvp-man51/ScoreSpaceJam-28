@@ -15,6 +15,9 @@ public class Weapon : MonoBehaviour
     [SerializeField] private GameObject Bullet;
     [SerializeField] private Transform ShootPoint;
 
+    [Header("Components")]
+    [SerializeField] private SpriteRenderer sr;
+
     private GameObject bulletCointainer;
 
     private Camera cam;
@@ -86,6 +89,17 @@ public class Weapon : MonoBehaviour
 
         // Apply Rotation
         transform.rotation = Quaternion.Euler(0, 0, rotZ);
+
+        if (rotation.x < 0f)
+        {
+            sr.flipY = true;
+            return;
+        }
+        if (rotation.x > 0f)
+        {
+            sr.flipY = false;
+            return;
+        }
     }
 
     public bool GetCanPressDown()

@@ -8,10 +8,13 @@ public class PlayerController : Actor
     [Header("Movement")]
     [SerializeField] private float MaxRun = 10f;
 
+    private bool facingRight = true;
     private Vector2 direction;
 
     [Header("Components")]
     [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private Animator animator;
+    [SerializeField] private SpriteRenderer sr;
 
     public delegate void Shoot();
     public static event Shoot onShoot;
@@ -31,6 +34,8 @@ public class PlayerController : Actor
     public void OnMovement(InputAction.CallbackContext context)
     {
         direction = context.ReadValue<Vector2>();
+
+        animator.SetBool("Walking", direction.normalized.y != 0 || direction.normalized.x != 0);
     }
 
     public void OnShoot(InputAction.CallbackContext context) 
@@ -55,8 +60,19 @@ public class PlayerController : Actor
             pen = 1.35f;
         }
 
+        if ((dir.x > 0 && !facingRight) || (dir.x < 0 && facingRight))
+        {
+            Flip();
+        }
+
         // Apply Velocity
-        rb.velocity = dir * MaxRun * pen;
+        rb.velocity = dir.normalized * MaxRun * pen;
+    }
+
+    private void Flip()
+    {
+        facingRight = !facingRight;
+        sr.flipX = !facingRight; 
     }
 
     #endregion

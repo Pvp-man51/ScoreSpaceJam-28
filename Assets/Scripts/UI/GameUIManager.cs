@@ -1,19 +1,35 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class GameUIManager : MonoBehaviour
 {
+    public static GameUIManager Instance;
+
     [Header("Death")]
     [SerializeField] private Material DeathTranMat;
     [SerializeField] private float TransitionTime = 1f;
 
-    public Canvas Canvas;
+    [Header("Score")]
+    [SerializeField] private TMP_Text scoreText;
+    [SerializeField] private TMP_Text comboCounter;
+    [SerializeField] private TMP_Text timerText;
 
     private const string _tPropertyname = "_Progress";
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void Start()
     {
         DeathTranMat.SetFloat(_tPropertyname, 1f); // Reset Death Transition
+    }
+
+    private void Update()
+    {
+        UpdateScoreCounter();
     }
 
     #region Transition
@@ -34,6 +50,29 @@ public class GameUIManager : MonoBehaviour
 
             yield return null;
         }
+    }
+
+    #endregion
+
+    #region Score
+
+    private void UpdateScoreCounter()
+    {
+        scoreText.text = GameManager.Instance.GetScore().ToString();
+        
+        if (GameManager.Instance.hitCounter > 0) 
+        {
+            comboCounter.text = "x" + GameManager.Instance.hitCounter.ToString();
+        }
+        else
+        {
+            comboCounter.text = string.Empty;
+        }
+    }
+
+    public void UpdateTimer(string time)
+    {
+        timerText.text = time;
     }
 
     #endregion

@@ -10,8 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5858025012609663231}
   - component: {fileID: 4437775993073974513}
+  - component: {fileID: 623996020575577765}
   - component: {fileID: 1882809549903331974}
   - component: {fileID: 8352559924799750674}
+  - component: {fileID: 3743314480088060573}
   m_Layer: 0
   m_Name: GameManger
   m_TagString: Untagged
@@ -46,7 +48,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b561e264fb657da4dac0ebad387660f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  State: 0
   Score: 0
+  maxTimeBetweenHits: 1
+--- !u!114 &623996020575577765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 756662585374364126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f566516398925442bb805425e2d1e84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rTimer: 0
 --- !u!114 &1882809549903331974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71,4 +88,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbff31f520b19ad41b12deeacf825924, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sounds: []
+  sounds:
+  - name: MenuMusic
+    clip: {fileID: 8300000, guid: 4f0e4d7443629d34e87ceaf6fed7a166, type: 3}
+    mixerGroup: {fileID: 5374109864998683718, guid: c16fc5dda949757498506da9566bebcc, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: CombatMusic
+    clip: {fileID: 8300000, guid: a4526f046d575db41bf94e45b2439e8e, type: 3}
+    mixerGroup: {fileID: 5374109864998683718, guid: c16fc5dda949757498506da9566bebcc, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+--- !u!114 &3743314480088060573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 756662585374364126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e5786bf60dbe0943a823deb004d7f2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entryDisplayObj: {fileID: 6023303935805426701, guid: e16fc572d81357a47b1434d73ef2cbb0, type: 3}
+  entryDisplayParent: {fileID: 0}
+  maxLoadedScores: 50
+  failedToLoadUI: {fileID: 0}
+  playerInputField: {fileID: 0}

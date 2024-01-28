@@ -64,4 +64,10 @@ public class Enemy : Actor
     }
 
     #endregion
+
+    protected override void Death()
+    {
+        base.Death();
+        GameManager.Instance.AddHit();
+    }
 }
