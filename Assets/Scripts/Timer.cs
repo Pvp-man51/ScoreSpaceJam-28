@@ -22,6 +22,9 @@ public class Timer : MonoBehaviour
         if (GameManager.Instance.State == GameState.Death)
             return;
 
+        if (GameUIManager.Instance == null)
+            return;
+
         rTimer += Time.deltaTime;
 
         string mins = Mathf.Floor(rTimer / 60).ToString("00");

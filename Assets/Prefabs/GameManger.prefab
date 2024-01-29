@@ -11,8 +11,6 @@ GameObject:
   - component: {fileID: 5858025012609663231}
   - component: {fileID: 4437775993073974513}
   - component: {fileID: 623996020575577765}
-  - component: {fileID: 1882809549903331974}
-  - component: {fileID: 8352559924799750674}
   - component: {fileID: 3743314480088060573}
   m_Layer: 0
   m_Name: GameManger
@@ -64,45 +62,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rTimer: 0
---- !u!114 &1882809549903331974
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 756662585374364126}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72670a128de72f94587d07ae546585d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &8352559924799750674
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 756662585374364126}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbff31f520b19ad41b12deeacf825924, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sounds:
-  - name: MenuMusic
-    clip: {fileID: 8300000, guid: 4f0e4d7443629d34e87ceaf6fed7a166, type: 3}
-    mixerGroup: {fileID: 5374109864998683718, guid: c16fc5dda949757498506da9566bebcc, type: 2}
-    volume: 1
-    pitch: 1
-    loop: 1
-    source: {fileID: 0}
-  - name: CombatMusic
-    clip: {fileID: 8300000, guid: a4526f046d575db41bf94e45b2439e8e, type: 3}
-    mixerGroup: {fileID: 5374109864998683718, guid: c16fc5dda949757498506da9566bebcc, type: 2}
-    volume: 1
-    pitch: 1
-    loop: 1
-    source: {fileID: 0}
 --- !u!114 &3743314480088060573
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,3 +79,5 @@ MonoBehaviour:
   maxLoadedScores: 50
   failedToLoadUI: {fileID: 0}
   playerInputField: {fileID: 0}
+  errorTextPlayerID: {fileID: 0}
+  errorTextUploadScore: {fileID: 0}

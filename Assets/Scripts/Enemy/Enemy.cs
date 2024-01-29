@@ -6,6 +6,8 @@ public class Enemy : Actor
     [Header("Stats")]
     [SerializeField] private int BaseDamage = 1;
     [SerializeField] private float BaseSpeed = 3f;
+    [SerializeField] private Animator MutatedAnim;
+    [SerializeField] private string[] walkingSoundNames;
 
     private int damage;
     private float speed;
@@ -14,23 +16,62 @@ public class Enemy : Actor
     [SerializeField] private AIDestinationSetter AIDestinationSetter;
     [SerializeField] private AIPath AIPath;
 
-    private void OnEnable() => GameManager.onMutateEnemies += MutateEnemy;
-    private void OnDisable() => GameManager.onMutateEnemies -= MutateEnemy;
+    private Transform target;
 
-
+    private void OnEnable()
+    {
+        GameManager.onMutateEnemies += MutateEnemy;
+        GameManager.OnGameStateChanged += PlayerDeath;
+    }
+    private void OnDisable() 
+    {
+        GameManager.onMutateEnemies -= MutateEnemy;
+        GameManager.OnGameStateChanged -= PlayerDeath;
+    } 
     private void Start()
     {
-        AIDestinationSetter.target = PlayerController.Instance.transform;
+        target = PlayerController.Instance.transform;
+
+        AIDestinationSetter.target = target;
 
         ApplyVariables();
 
         AIPath.maxSpeed = speed;
+
+        srE = GetComponent<SpriteRenderer>();
+
+        nColor = srE.color;
+    }
+
+    private void LateUpdate()
+    {
+        Vector3 playerPos = transform.InverseTransformPoint(target.position);
+
+        if (playerPos.x < 0)
+        {
+            srE.flipX = false;
+        }
+        else if (playerPos.x > 0)
+        {
+            srE.flipX = true;
+        }
     }
 
     private void ApplyVariables()
     {
         speed = BaseSpeed;
         damage = BaseDamage;
+    }
+
+    private void PlayerDeath(GameState state)
+    {
+        if (state == GameState.Death)
+        {
+            speed = 0;
+            damage = 0;
+
+            AIPath.maxSpeed = speed;
+        }
     }
 
     public int GetDamage()
@@ -57,6 +98,7 @@ public class Enemy : Actor
         print("MUTATING!!");
         damage = GameManager.Instance.GetMutatedDamage(damage);
         speed = GameManager.Instance.GetMutatedSpeed(speed);
+        //Health = GameManager.Instance.GetMutatedEnemyHealth(Health);
 
         print(damage);
 
@@ -69,5 +111,15 @@ public class Enemy : Actor
     {
         base.Death();
         GameManager.Instance.AddHit();
+        GameManager.Instance.AddScore(1);
+    }
+
+    public void PlayFootStepSound()
+    {
+        if (GameManager.Instance.State == GameState.Death)
+            return;
+
+        string footStep = walkingSoundNames[Random.Range(0, walkingSoundNames.Length)];
+        AudioManager.Instance.Play(footStep);
     }
 }

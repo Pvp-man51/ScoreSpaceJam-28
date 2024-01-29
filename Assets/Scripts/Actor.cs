@@ -6,6 +6,9 @@ public class Actor : MonoBehaviour
     [SerializeField] protected int MaxHealth = 10;
     [SerializeField] protected int Health = 10;
 
+    protected SpriteRenderer srE;
+    protected Color nColor;
+
     protected virtual void ReciveDamage(int damage)
     {
         print("Damage to: " + gameObject.name + "\nAmount: " + damage);
@@ -15,8 +18,17 @@ public class Actor : MonoBehaviour
         if (Health < 1)
         {
             Death();
-            return;
         }
+
+
+        CancelInvoke(nameof(RestColor));
+        srE.color = Color.white;
+        Invoke(nameof(RestColor), 0.05f);
+    }
+
+    private void RestColor()
+    {
+        srE.color = nColor;
     }
 
     protected virtual void ReciveHealth(int health)

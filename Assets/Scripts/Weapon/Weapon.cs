@@ -52,8 +52,12 @@ public class Weapon : MonoBehaviour
 
     protected virtual void Shoot()
     {
+        if (GameManager.Instance.State == GameState.Death)
+            return;
+
        if (timeBetweenShotsTimer < 0) 
-       { 
+       {
+            AudioManager.Instance.Play("GunShoot");
             for (int i = 0; i < BulletAmount; i++)
             {
                 // Instanciate Bullet obj inculuding it's Rigidbody2D

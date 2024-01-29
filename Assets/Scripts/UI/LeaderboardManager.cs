@@ -1,7 +1,9 @@
 using LootLocker.Requests;
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LeaderboardManager : MonoBehaviour
 {
@@ -20,6 +22,35 @@ public class LeaderboardManager : MonoBehaviour
 
     [Header("PlayerIDInput")]
     [SerializeField] private TMP_InputField playerInputField;
+    [SerializeField] private TMP_Text errorTextPlayerID;
+
+    [Header("UploadScore")]
+    [SerializeField] private TMP_Text errorTextUploadScore;
+
+    private void OnEnable()
+    {
+        SceneManager.activeSceneChanged += IsMenu;
+    }
+
+    private void IsMenu(Scene arg0, Scene arg1)
+    {
+       if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("MainMenu"))
+       {
+            AudioManager.Instance.Stop("CombatMusic");
+
+            if (PlayerPrefs.HasKey("playerID"))
+            {
+                playerID = PlayerPrefs.GetString("playerID");
+                MenuManager.Instance.OpenMenu("Main");
+            }
+            else
+            {
+                MenuManager.Instance.OpenMenu("PlayerInputUI");
+            }
+       }
+
+       ConnectToLootLocker();
+    }
 
     private void Start()
     {
@@ -27,7 +58,6 @@ public class LeaderboardManager : MonoBehaviour
         {
             playerID = PlayerPrefs.GetString("playerID");
             MenuManager.Instance.OpenMenu("Main");
-
         }
         else
         {
@@ -39,7 +69,7 @@ public class LeaderboardManager : MonoBehaviour
 
     private void ConnectToLootLocker()
     {
-        LootLockerSDKManager.StartGuestSession(playerID, (response) =>
+        LootLockerSDKManager.StartGuestSession((response) =>
         {
             if (response.success)
             {
@@ -54,7 +84,7 @@ public class LeaderboardManager : MonoBehaviour
 
     public void ShowScores()
     {
-        //failedToLoadUI.SetActive(false)
+        failedToLoadUI.SetActive(false);
 
         foreach (var entry in entryList)
         {
@@ -71,7 +101,7 @@ public class LeaderboardManager : MonoBehaviour
             {
                 for (int i = 0; i < scores.Length; i++)
                 {
-                    CreateEntryDisplay(scores[i].rank.ToString(), scores[i].player.public_uid, 
+                    CreateEntryDisplay(scores[i].rank.ToString(), scores[i].player.name, 
                         scores[i].score.ToString(), scores[i].metadata.ToString());
                 }
             }
@@ -98,10 +128,12 @@ public class LeaderboardManager : MonoBehaviour
             if (response.success)
             {
                 print("Submitted to Leaderboard succesfully");
+                errorTextUploadScore.text = "<color=green>Uploaded Succesfully!";
             }
             else
             {
                 print("Failed: " + response.errorData.message);
+                errorTextUploadScore.text = "<color=red>Upload Failed.\nPlease Retry";
             }
         });
     }
@@ -109,8 +141,23 @@ public class LeaderboardManager : MonoBehaviour
     public void SetPlayerID()
     {
         playerID = playerInputField.text;
-        PlayerPrefs.SetString("playerID", playerID);
+        LootLockerSDKManager.SetPlayerName(playerID, (response) =>
+        {
+            if (response.success)
+            {
+                MenuManager.Instance.OpenMenu("Main");
+                PlayerPrefs.SetString("playerID", playerID);
+            }
+            else
+            {
+                errorTextPlayerID.text = "<color=red>Name coulden't be set.\nPlease Retry";
+            }
+        });
+    }
+
+    public void PlayOffline()
+    {
         MenuManager.Instance.OpenMenu("Main");
-        ConnectToLootLocker();
+        GameManager.Instance.PlayOffline();
     }
 }

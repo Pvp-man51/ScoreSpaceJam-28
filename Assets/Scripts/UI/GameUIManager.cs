@@ -24,7 +24,10 @@ public class GameUIManager : MonoBehaviour
 
     private void Start()
     {
+        AudioManager.Instance.Stop("MenuMusic");
+        AudioManager.Instance.Play("CombatMusic");
         DeathTranMat.SetFloat(_tPropertyname, 1f); // Reset Death Transition
+        transform.GetChild(0).GetComponent<Menu>().open = true;
     }
 
     private void Update()

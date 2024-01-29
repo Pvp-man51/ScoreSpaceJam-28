@@ -19,13 +19,35 @@ public class PlayerController : Actor
     public delegate void Shoot();
     public static event Shoot onShoot;
 
+    [Header("Audio")]
+    [SerializeField] private string[] walkingSoundNames;
+
+    private bool invincible;
+    private int cooldown;
+    private int pCooldown;
+    private Vector2 pushDir;
+
+    private Color dColor;
+
     private void Awake()
     {
         Instance = this;
     }
 
+    private void Start()
+    {
+        dColor = sr.color;
+    }
+
     private void FixedUpdate()
     {
+        if (GameManager.Instance.State == GameState.Death)
+        {
+            rb.velocity = Vector2.zero;
+            return;
+        }
+
+        CheckInvincibleStuff();
         Movement(direction);
     }
 
@@ -85,23 +107,85 @@ public class PlayerController : Actor
         GameManager.Instance.UpdateGameState(GameState.Death);
     }
 
-    protected override void ReciveDamage(int damage)
+    private void ReciveDamage(Vector2 dir, int damage)
     {
+        if (invincible)
+            return;
+
         print("Player recived damage");
-        Health -= damage;
 
         if (Health < 1)
         {
             Death();
             return;
         }
+
+        Health -= damage;
+
+        invincible = true;
+        cooldown = 80;
+        pCooldown = 25;
+        pushDir = -dir;
+
+        CancelInvoke(nameof(ResetColor));
+        sr.color = Color.white;
+        Invoke(nameof(ResetColor), 0.05f);
+    }
+
+    private void ResetColor()
+    {
+        sr.color = dColor;
+    }
+
+    private void CheckInvincibleStuff()
+    {
+        if (!invincible)
+            return;
+
+        float a = Mathf.PingPong(Time.time * 10, 0.6f) + 0.3f;
+        if (a < 0.7f)
+            sr.color = dColor;
+        else
+            sr.color = Color.black;
+
+        sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, a / 1.3f);
+
+        cooldown--;
+        pCooldown--;
+
+        if (cooldown < 1)
+        {
+            invincible = false;
+        }
+
+        if (pCooldown > 0)
+        {
+            rb.velocity = pushDir;
+            return;
+        }
+
+        if (cooldown == 0)
+            sr.color = dColor;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Enemy")) 
         {
-            ReciveDamage(collision.GetComponent<Enemy>().GetDamage());
+            ReciveDamage(rb.velocity, collision.GetComponent<Enemy>().GetDamage());
         }
+    }
+
+    public int GetHealth()
+    {
+        return Health;
+    }
+
+    public void PlayFootStepSound()
+    {
+        if (GameManager.Instance.State == GameState.Death)
+            return;
+        string footStep = walkingSoundNames[Random.Range(0, walkingSoundNames.Length)];
+        AudioManager.Instance.Play(footStep);
     }
 }

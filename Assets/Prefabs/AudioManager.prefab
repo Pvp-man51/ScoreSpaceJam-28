@@ -1,0 +1,144 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7386975587123729090
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3209858445108558479}
+  - component: {fileID: 4033491161770081000}
+  - component: {fileID: -6177742987628082758}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3209858445108558479
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7386975587123729090}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 20.95184, y: -13.735145, z: -0.8825171}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4033491161770081000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7386975587123729090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbff31f520b19ad41b12deeacf825924, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: MenuMusic
+    clip: {fileID: 8300000, guid: 4f0e4d7443629d34e87ceaf6fed7a166, type: 3}
+    mixerGroup: {fileID: 5374109864998683718, guid: c16fc5dda949757498506da9566bebcc, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: CombatMusic
+    clip: {fileID: 8300000, guid: a4526f046d575db41bf94e45b2439e8e, type: 3}
+    mixerGroup: {fileID: 5374109864998683718, guid: c16fc5dda949757498506da9566bebcc, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: PlayerFootStep1
+    clip: {fileID: 8300000, guid: bd0862487995d2b47a966bacad99067f, type: 3}
+    mixerGroup: {fileID: -5269327673825551920, guid: c16fc5dda949757498506da9566bebcc, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: PlayerFootStep2
+    clip: {fileID: 8300000, guid: c331b35eab01c974fb504e93658f81b5, type: 3}
+    mixerGroup: {fileID: -5269327673825551920, guid: c16fc5dda949757498506da9566bebcc, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: PlayerFootStep3
+    clip: {fileID: 8300000, guid: ad9b88176dd4ade45b79f82c301c74b3, type: 3}
+    mixerGroup: {fileID: -5269327673825551920, guid: c16fc5dda949757498506da9566bebcc, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: PlayerFootStep4
+    clip: {fileID: 8300000, guid: d6cef50426498f049a5ad29d3c4c2005, type: 3}
+    mixerGroup: {fileID: -5269327673825551920, guid: c16fc5dda949757498506da9566bebcc, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: PlayerFootStep5
+    clip: {fileID: 8300000, guid: 03b2c724f92f3a64ab03df934f3a1049, type: 3}
+    mixerGroup: {fileID: -5269327673825551920, guid: c16fc5dda949757498506da9566bebcc, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: PlayerFootStep6
+    clip: {fileID: 8300000, guid: a4c6155aff6644940bb208f9cf2ca55e, type: 3}
+    mixerGroup: {fileID: -5269327673825551920, guid: c16fc5dda949757498506da9566bebcc, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: GunShoot
+    clip: {fileID: 8300000, guid: 7b279c42326453840b02a3985f967964, type: 3}
+    mixerGroup: {fileID: -5269327673825551920, guid: c16fc5dda949757498506da9566bebcc, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: EnemyTalking
+    clip: {fileID: 8300000, guid: 1eeed30536ec16f4bbe34ee3b6f79fa6, type: 3}
+    mixerGroup: {fileID: -5269327673825551920, guid: c16fc5dda949757498506da9566bebcc, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: EnemyStep1
+    clip: {fileID: 8300000, guid: 1735c4baf9fab1046a4c2c4f68aa827c, type: 3}
+    mixerGroup: {fileID: -5269327673825551920, guid: c16fc5dda949757498506da9566bebcc, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: EnemyStep2
+    clip: {fileID: 8300000, guid: ff5e57c25c4e6b340b6c5644436eaed9, type: 3}
+    mixerGroup: {fileID: -5269327673825551920, guid: c16fc5dda949757498506da9566bebcc, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+--- !u!114 &-6177742987628082758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7386975587123729090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72670a128de72f94587d07ae546585d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

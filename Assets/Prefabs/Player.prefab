@@ -52,6 +52,7 @@ MonoBehaviour:
   canPressDown: 1
   Bullet: {fileID: 2839525033980228011, guid: 38f633cda56aaf94dadb8f7f9d645b01, type: 3}
   ShootPoint: {fileID: 2017952726738534919}
+  sr: {fileID: 7558471265022310636}
 --- !u!1 &3549112911642970006
 GameObject:
   m_ObjectHideFlags: 0
@@ -409,12 +410,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09ea7dbde439b5c41bce839d4d0bf1aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 10
-  Health: 10
+  MaxHealth: 5
+  Health: 5
   MaxRun: 3
   rb: {fileID: 6228597195733626943}
   animator: {fileID: 4143209926634291927}
   sr: {fileID: 358071718944128737}
+  walkingSoundNames:
+  - PlayerFootStep1
+  - PlayerFootStep2
+  - PlayerFootStep3
+  - PlayerFootStep4
+  - PlayerFootStep5
+  - PlayerFootStep6
 --- !u!95 &4143209926634291927
 Animator:
   serializedVersion: 7

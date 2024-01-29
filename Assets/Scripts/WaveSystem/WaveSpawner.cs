@@ -7,11 +7,11 @@ public class WaveSpawner : MonoBehaviour
 
     [Header("SpawnStuff")]
     [SerializeField] private Vector2 SpawnAreaSize;
-    [SerializeField] private GameObject Enemy;
+    [SerializeField] private GameObject[] Enemy;
     [Space(5)]
     [SerializeField] private float TimeBetweenWaves = 5.0f;
     [Space(5)]
-    [SerializeField] private float TimeTillMutationOccurs = 60f;
+    [SerializeField] private float TimeTillMutationOccurs = 30f;
 
     private float mutationTimer;
 
@@ -33,30 +33,26 @@ public class WaveSpawner : MonoBehaviour
     }
 
     private void Update()
-    {   
+    {
+        if (GameManager.Instance.State == GameState.Death)
+            return;
+
         if (spawnState == SpawnState.WAITING)
         {
-            //if (!EnemyAlive())
-            //{
-                // Move to next wave
-                WaveCompleted();
-            //}
-            //else
-            //{
-                
-            //}
+            WaveCompleted();
         }
 
-        if (EnemyAlive()) 
-        {
+        //if (EnemyAlive()) 
+        //{
             mutationTimer -= Time.deltaTime;
 
             if (mutationTimer < 0)
             {
+                AudioManager.Instance.Play("EnemyTalking");
                 GameManager.Instance.StartMutation();
                 mutationTimer = TimeTillMutationOccurs;
             }
-        }
+        //}
 
         if (timeBetweenWavesTimer <= 0)
         {
@@ -79,9 +75,9 @@ public class WaveSpawner : MonoBehaviour
             for (int i = 0; i < enemyCount; i++) 
             {
                 // Calc Pos
-                Vector2 spawnPos = new Vector2(Random.Range(-SpawnAreaSize.x, SpawnAreaSize.x), Random.Range(-SpawnAreaSize.y, SpawnAreaSize.y));
+                Vector2 spawnPos = new Vector2(Random.Range(-SpawnAreaSize.x / 2, SpawnAreaSize.x / 2), Random.Range(-SpawnAreaSize.y / 2, SpawnAreaSize.y / 2));
 
-                SpawnEnemy(spawnPos);
+                SpawnEnemy((Vector2)transform.position + spawnPos);
 
                 yield return new WaitForSeconds(spawnRate);
             }
@@ -95,7 +91,7 @@ public class WaveSpawner : MonoBehaviour
 
     private void SpawnEnemy(Vector2 pos)
     {
-        Instantiate(Enemy, pos, Quaternion.identity);
+        Instantiate(Enemy[Random.Range(0, Enemy.Length)], pos, Quaternion.identity);
     }
 
     private bool EnemyAlive()

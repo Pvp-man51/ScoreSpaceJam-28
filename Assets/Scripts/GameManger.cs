@@ -21,13 +21,13 @@ public class GameManager : MonoBehaviour
 
     private int bestScore;
 
+    public bool offline { get; private set; }
+
     [Header("ComboCounter")]
     [SerializeField] private float maxTimeBetweenHits = 1f;
 
     public int hitCounter { get; private set; }
     private float lastHitTime;
-
-    private GameUIManager uiManager;
 
     public LeaderboardManager leaderboardManager { get; private set; }
 
@@ -44,10 +44,6 @@ public class GameManager : MonoBehaviour
         UpdateGameState(GameState.Normal);
 
         Cursor.lockState = CursorLockMode.Confined;
-
-        //leaderboardManager.GetComponent<LeaderboardManager>();
-
-        //uiManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<GameUIManager>();
     }
 
     #region GameState
@@ -74,8 +70,9 @@ public class GameManager : MonoBehaviour
 
     private void Death()
     {
+        print("AHH");
         MenuManager.Instance.OpenMenu("Death");
-        uiManager.StartTransition();
+        GameUIManager.Instance.StartTransition();
 
         if (Score > bestScore)
         {
@@ -105,7 +102,6 @@ public class GameManager : MonoBehaviour
 
     public int GetMutatedDamage(int currentDamage)
     {
-        print(currentDamage);
         return currentDamage += 1;
     }
 
@@ -149,7 +145,12 @@ public class GameManager : MonoBehaviour
 
     public void AddScore(int amount)
     {
-        Score += amount;
+        Score += amount * hitCounter > 1 ? hitCounter : 1;
+    }
+
+    public int GetBestScore()
+    {
+        return bestScore;
     }
 
     #endregion
@@ -162,6 +163,11 @@ public class GameManager : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void PlayOffline()
+    {
+
     }
 }
 
