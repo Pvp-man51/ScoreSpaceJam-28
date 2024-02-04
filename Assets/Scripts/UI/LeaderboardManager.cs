@@ -48,8 +48,6 @@ public class LeaderboardManager : MonoBehaviour
                 MenuManager.Instance.OpenMenu("PlayerInputUI");
             }
        }
-
-       ConnectToLootLocker();
     }
 
     private void Start()
